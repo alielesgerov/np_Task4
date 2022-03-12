@@ -38,14 +38,14 @@ namespace cs_TaskClient
             // 
             // textBoxIPAddress
             // 
-            this.textBoxIPAddress.Location = new System.Drawing.Point(104, 13);
+            this.textBoxIPAddress.Location = new System.Drawing.Point(80, 14);
             this.textBoxIPAddress.Name = "textBoxIPAddress";
             this.textBoxIPAddress.Size = new System.Drawing.Size(235, 23);
             this.textBoxIPAddress.TabIndex = 0;
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(388, 13);
+            this.buttonStart.Location = new System.Drawing.Point(321, 14);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 1;
@@ -57,7 +57,8 @@ namespace cs_TaskClient
             // 
             this.pictureBoxScreenShot.Location = new System.Drawing.Point(13, 43);
             this.pictureBoxScreenShot.Name = "pictureBoxScreenShot";
-            this.pictureBoxScreenShot.Size = new System.Drawing.Size(450, 300);
+            this.pictureBoxScreenShot.Size = new System.Drawing.Size(900, 600);
+            this.pictureBoxScreenShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxScreenShot.TabIndex = 2;
             this.pictureBoxScreenShot.TabStop = false;
             // 
@@ -74,13 +75,13 @@ namespace cs_TaskClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 353);
+            this.ClientSize = new System.Drawing.Size(924, 651);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxScreenShot);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.textBoxIPAddress);
-            this.MaximumSize = new System.Drawing.Size(492, 392);
-            this.MinimumSize = new System.Drawing.Size(492, 392);
+            this.MaximumSize = new System.Drawing.Size(940, 690);
+            this.MinimumSize = new System.Drawing.Size(940, 690);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreenShot)).EndInit();

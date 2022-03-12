@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj": {}
+    "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj": {
+    "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
+        "projectUniqueName": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
         "projectName": "cs_TaskClient",
-        "projectPath": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
+        "projectPath": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
         "packagesPath": "C:\\Users\\noid3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\obj\\",
+        "outputPath": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -55,20 +55,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[5.0.13, 5.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
             }
           ],
           "frameworkReferences": {

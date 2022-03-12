@@ -11,19 +11,33 @@ namespace cs_TaskServer
 {
     internal static class Program
     {
+        private static UdpClient _client { get; set; }
+        private static IPEndPoint _connectEp { get; set; }
+        private static BinaryWriter _bw { get; set; }
+        private static TcpListener _listener { get; set; }
+        private static NetworkStream _stream { get; set; }
+
         private static void Main()
         {
-            var listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 45678);
-            listener.Start(5);
+            // UDP
+            _connectEp = new(IPAddress.Loopback, 45679);
+            _client = new UdpClient();
 
-            var client = listener.AcceptTcpClient();
-            var stream = client.GetStream();
 
-            var br = new BinaryReader(stream);
+
+
+            // TCP
+            _listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 45678);
+            _listener.Start(5);
+
+            var client = _listener.AcceptTcpClient();
+            _stream = client.GetStream();
+
+            var br = new BinaryReader(_stream);
 
             var data = br.ReadString();
 
-            CaptureScreen().Save("Test.png", ImageFormat.Png);
+            PrintScreen.CaptureScreen().Save("Test.png", ImageFormat.Png);
 
             if (data == "Connect")
             {
@@ -31,8 +45,8 @@ namespace cs_TaskServer
 
                 while (true)
                 {
-                    ToClient(CaptureScreen());
-                    Thread.Sleep(50);
+                    ToClient();
+                    //Thread.Sleep(24);
                 }
             }
 
@@ -44,46 +58,45 @@ namespace cs_TaskServer
             return (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
         }
 
-        private static void ToClient(Image image)
+        private static Image ResizeImage(Image image)
         {
-            var client = new UdpClient();
+            return new Bitmap(image, new Size(image.Width/4, image.Height/4));
+        }
 
-            IPEndPoint connectEp = new(IPAddress.Loopback, 45679);
+        private static void ToClient()
+        {
+            var image = PrintScreen.CaptureScreen();
 
             var imageBytes = ImageToByteArray(image);
 
             var skipCount = 0;
-            var maxValue = ushort.MaxValue - 28;
+            const int maxValue = ushort.MaxValue - 28;
             var bytesLength = imageBytes.Length;
 
             if (imageBytes.Length > maxValue)
             {
                 while (skipCount + maxValue <= bytesLength)
                 {
-                    client.Send(imageBytes
+                    _client.Send(imageBytes
                         .Skip(skipCount)
                         .Take(maxValue)
-                        .ToArray(), maxValue, connectEp);
+                        .ToArray(), maxValue, _connectEp);
 
                     skipCount += maxValue;
                 }
 
                 if (skipCount != bytesLength)
                 {
-                    client.Send(imageBytes
+                    _client.Send(imageBytes
                         .Skip(skipCount)
                         .Take(bytesLength)
-                        .ToArray(), bytesLength - skipCount, connectEp);
+                        .ToArray(), bytesLength - skipCount, _connectEp);
                 }
             }
             else
-                client.Send(imageBytes, imageBytes.Length, connectEp);
+                _client.Send(imageBytes, imageBytes.Length, _connectEp);
 
         }
 
-        private static Image CaptureScreen()
-        {
-            return PrintScreen.CaptureScreen();
-        }
     }
 }

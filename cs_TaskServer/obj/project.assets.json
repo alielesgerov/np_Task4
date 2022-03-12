@@ -155,11 +155,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskServer\\cs_TaskServer.csproj",
+      "projectUniqueName": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskServer\\cs_TaskServer.csproj",
       "projectName": "cs_TaskServer",
-      "projectPath": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskServer\\cs_TaskServer.csproj",
+      "projectPath": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskServer\\cs_TaskServer.csproj",
       "packagesPath": "C:\\Users\\noid3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskServer\\obj\\",
+      "outputPath": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -209,20 +209,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Host.win-x64",
             "version": "[5.0.13, 5.0.13]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
           }
         ],
         "frameworkReferences": {

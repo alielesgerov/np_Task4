@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-//using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,56 +11,63 @@ namespace cs_TaskClient
 {
     public partial class Form1 : Form
     {
+        private TcpClient _client { get; set; }
+        private BinaryWriter _bw { get; set; }
+        private NetworkStream _ns { get; set; }
+
+        private UdpClient _listener { get; set; }
+
+        private IPEndPoint _ep;
+
         public Form1()
         {
             //Thread.Sleep(5000);
             InitializeComponent();
-            textBoxIPAddress.Text = @"127.0.0.1";
+
+            textBoxIPAddress.Text = "127.0.0.1";
+            _client = new TcpClient();
+
+
+            _listener = new UdpClient(45679);
+            _ep = new IPEndPoint(IPAddress.Any, 0);
         }
 
         private async void ButtonStart_Click(object sender, EventArgs e)
         {
             await Task.Run(() =>
             {
-                var client = new TcpClient();
-                client.Connect(textBoxIPAddress.Text, 45678);
+                _client.Connect(textBoxIPAddress.Text, 45678);
 
-                var stream = client.GetStream();
-                var bw = new BinaryWriter(stream);
+                _ns = _client.GetStream();
+                _bw = new BinaryWriter(_ns);
 
-                bw.Write("Connect");
+                _bw.Write("Connect");
 
                 while (true)
                 {
-                    FromServer(stream);
+                    FromServer();
                 }
             });
         }
 
-        private async void FromServer(NetworkStream stream)
+        private void FromServer()
         {
-            var listener = new UdpClient(45679);
-            var ep = new IPEndPoint(IPAddress.Any, 0);
 
-            var br = new BinaryReader(stream);
-            byte[] bytes = null;
+            byte[] bytes;
             var imageBytes = new List<byte>();
 
-            while (true)
+            do
             {
-                var length = br.ReadInt32();
-                do
-                {
-                    Task.Run(() => { bytes = listener.Receive(ref ep); }).Wait();
+                bytes = _listener.Receive(ref _ep);
+                imageBytes.AddRange(bytes);
 
-                    imageBytes.AddRange(bytes);
-                    length -= bytes.Length;
-                } while (length > 0);
+            } while (bytes.Length == (ushort.MaxValue - 28));
 
-                await using var ms = new MemoryStream(imageBytes.ToArray());
-                pictureBoxScreenShot.Image = Image.FromStream(ms);
-                imageBytes.Clear();
-            }
+            // Burda butun byte-lari oxuyandan sonra shekile cevirmelisen.
+            //Thread.Sleep(3000); // exception
+
+            using var ms = new MemoryStream(imageBytes.ToArray());
+            pictureBoxScreenShot.Image = Image.FromStream(ms);
         }
     }
 }

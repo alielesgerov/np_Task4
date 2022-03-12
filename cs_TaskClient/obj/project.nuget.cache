@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Q4+B99UL9CEaWAt93XrK1r9C+2qUs5KnM2J5S/7qZYIYhOpX9oc4HtVmqFXlCKRlyEvUTVkd6jgPI2yeCp4uZQ==",
+  "dgSpecHash": "Jf8g/fBUWfGSMUY8o842hFBrOopWhgz/05SH4/a4IyFUxVD7AY+AAeyv/Yhco68SaQaiEHVzRO2COPgwewUvxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\noid3\\Downloads\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
+  "projectFilePath": "C:\\Users\\noid3\\Desktop\\np_Task4\\np_Task4\\cs_TaskClient\\cs_TaskClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\noid3\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512",
-    "C:\\Users\\noid3\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\noid3\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\noid3\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\noid3\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": []
 }
