@@ -11,12 +11,10 @@ namespace cs_TaskClient
 {
     public partial class Form1 : Form
     {
-        private TcpClient _client { get; set; }
-        private BinaryWriter _bw { get; set; }
-        private NetworkStream _ns { get; set; }
-
-        private UdpClient _listener { get; set; }
-
+        private readonly TcpClient _client;
+        private BinaryWriter _bw;
+        private NetworkStream _ns;
+        private readonly UdpClient _listener;
         private IPEndPoint _ep;
 
         public Form1()
@@ -24,7 +22,7 @@ namespace cs_TaskClient
             //Thread.Sleep(5000);
             InitializeComponent();
 
-            textBoxIPAddress.Text = "127.0.0.1";
+            textBoxIPAddress.Text = @"127.0.0.1";
             _client = new TcpClient();
 
 
@@ -43,6 +41,8 @@ namespace cs_TaskClient
 
                 _bw.Write("Connect");
 
+                //FromServer();
+
                 while (true)
                 {
                     FromServer();
@@ -56,18 +56,21 @@ namespace cs_TaskClient
             byte[] bytes;
             var imageBytes = new List<byte>();
 
-            do
+            while (true)
             {
-                bytes = _listener.Receive(ref _ep);
-                imageBytes.AddRange(bytes);
+                while (true)
+                {
+                    bytes = _listener.Receive(ref _ep);
+                    if (bytes.Length != 0)
+                        imageBytes.AddRange(bytes);
+                    else
+                        break;
+                }
 
-            } while (bytes.Length == (ushort.MaxValue - 28));
-
-            // Burda butun byte-lari oxuyandan sonra shekile cevirmelisen.
-            //Thread.Sleep(3000); // exception
-
-            using var ms = new MemoryStream(imageBytes.ToArray());
-            pictureBoxScreenShot.Image = Image.FromStream(ms);
+                using var ms = new MemoryStream(imageBytes.ToArray());
+                pictureBoxScreenShot.Image = Image.FromStream(ms);
+                imageBytes.Clear();
+            }
         }
     }
 }

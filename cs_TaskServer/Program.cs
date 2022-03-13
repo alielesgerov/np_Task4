@@ -5,22 +5,20 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
 namespace cs_TaskServer
 {
     internal static class Program
     {
-        private static UdpClient _client { get; set; }
-        private static IPEndPoint _connectEp { get; set; }
-        private static BinaryWriter _bw { get; set; }
-        private static TcpListener _listener { get; set; }
-        private static NetworkStream _stream { get; set; }
+        private static UdpClient _client;
+        private static IPEndPoint _connectEp;
+        private static TcpListener _listener;
+        private static NetworkStream _stream;
 
         private static void Main()
         {
             // UDP
-            _connectEp = new(IPAddress.Loopback, 45679);
+            _connectEp = new IPEndPoint(IPAddress.Loopback, 45679);
             _client = new UdpClient();
 
 
@@ -39,17 +37,14 @@ namespace cs_TaskServer
 
             PrintScreen.CaptureScreen().Save("Test.png", ImageFormat.Png);
 
-            if (data == "Connect")
+            if (data != "Connect") return;
+
+            Console.WriteLine("Connected");
+            while (true)
             {
-                Console.WriteLine("Connected");
-
-                while (true)
-                {
-                    ToClient();
-                    //Thread.Sleep(24);
-                }
+                ToClient();
+                //Thread.Sleep(24);
             }
-
         }
 
         private static byte[] ImageToByteArray(Image image)
@@ -58,16 +53,20 @@ namespace cs_TaskServer
             return (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
         }
 
-        private static Image ResizeImage(Image image)
-        {
-            return new Bitmap(image, new Size(image.Width/4, image.Height/4));
-        }
+        #region Test
+
+        //private static Image ResizeImage(Image image)
+        //{
+        //    return new Bitmap(image, new Size(image.Width/2, image.Height/2));
+        //}
+
+        #endregion
 
         private static void ToClient()
         {
             var image = PrintScreen.CaptureScreen();
 
-            var imageBytes = ImageToByteArray(image);
+            var imageBytes = ImageToByteArray(/*ResizeImage*/(image));
 
             var skipCount = 0;
             const int maxValue = ushort.MaxValue - 28;
@@ -95,6 +94,8 @@ namespace cs_TaskServer
             }
             else
                 _client.Send(imageBytes, imageBytes.Length, _connectEp);
+
+            _client.Send(new byte[]{}, 0, _connectEp);
 
         }
 

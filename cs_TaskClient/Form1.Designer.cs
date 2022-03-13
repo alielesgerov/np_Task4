@@ -57,7 +57,7 @@ namespace cs_TaskClient
             // 
             this.pictureBoxScreenShot.Location = new System.Drawing.Point(13, 43);
             this.pictureBoxScreenShot.Name = "pictureBoxScreenShot";
-            this.pictureBoxScreenShot.Size = new System.Drawing.Size(900, 600);
+            this.pictureBoxScreenShot.Size = new System.Drawing.Size(852, 480);
             this.pictureBoxScreenShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxScreenShot.TabIndex = 2;
             this.pictureBoxScreenShot.TabStop = false;
@@ -75,13 +75,13 @@ namespace cs_TaskClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 651);
+            this.ClientSize = new System.Drawing.Size(876, 531);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxScreenShot);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.textBoxIPAddress);
-            this.MaximumSize = new System.Drawing.Size(940, 690);
-            this.MinimumSize = new System.Drawing.Size(940, 690);
+            this.MaximumSize = new System.Drawing.Size(892, 570);
+            this.MinimumSize = new System.Drawing.Size(892, 570);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScreenShot)).EndInit();
